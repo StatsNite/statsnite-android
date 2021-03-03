@@ -1,9 +1,8 @@
-package com.statsnite.statsnite;
+package com.statsnite.stats;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.statsnite.statsnite;
+package com.statsnite.stats;
 
 import org.junit.Test;
 
