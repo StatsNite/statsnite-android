@@ -25,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDomStorageEnabled(true);
         webSettings.setSupportZoom(false);
-        myWebView.loadUrl("https:/statsnite.com/");
+        if(!webSettings.getUserAgentString().contains("; wv")) {
+            webSettings.setUserAgentString("Mozilla/5.0 (Linux; Android 10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.181 Mobile Safari/537.36");
+        }
+        myWebView.loadUrl("https:/statsnite.com");
     }
 
     @Override
@@ -45,18 +48,12 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            if (request.getUrl().toString().startsWith("https://statsnite.com/")) {
+            if (request.getUrl().toString().startsWith("https://statsnite.com")) {
                 view.loadUrl(request.getUrl().toString());
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(request.getUrl().toString())));
             }
             return true;
-        }
-        public void onPageFinished(WebView view, String url) {
-            view.loadUrl("javascript:(function() { " +
-                    "document.getElementsByClassName('nav-game')[0].style.display='none'; " +
-                    "document.getElementsByClassName('blocks').style.display='none'; " +
-                    "})()");
         }
     }
 }
